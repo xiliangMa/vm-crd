@@ -1,0 +1,7 @@
+apiVersion: mscloud.xiliangam.com/v1
+kind: VM
+metadata:
+  name: vm-sample
+spec:
+  # Add fields here
+  foo: bar

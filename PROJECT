@@ -1,0 +1,7 @@
+version: "2"
+domain: xiliangam.com
+repo: crd
+resources:
+- group: mscloud
+  version: v1
+  kind: VM
