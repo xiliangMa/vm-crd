@@ -11,6 +11,8 @@ spec:
     kind: VM
     plural: vms
   scope: ""
+  subresources:
+    status: {}
   validation:
     openAPIV3Schema:
       description: VM is the Schema for the vms API
@@ -384,8 +386,38 @@ spec:
               type: string
           type: object
         spec:
+          properties:
+            cpu:
+              type: integer
+            ha:
+              type: boolean
+            memory:
+              type: integer
+            name:
+              description: xiliangma test vm crd controller
+              type: string
+            type:
+              type: string
+          required:
+          - name
+          - type
+          - cpu
+          - memory
+          - ha
           type: object
         status:
+          properties:
+            status:
+              type: string
+            update_last_time:
+              description: 'INSERT ADDITIONAL STATUS FIELD - define observed state
+                of cluster Important: Run "make" to regenerate code after modifying
+                this file'
+              format: date-time
+              type: string
+          required:
+          - update_last_time
+          - status
           type: object
       type: object
   versions:

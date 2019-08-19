@@ -26,14 +26,26 @@ import (
 type VMSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	// xiliangma test vm crd controller
+	Name   string `json:"name"`
+	Type   string `json:"type"`
+	CPU    int    `json:"cpu"`
+	Memory int    `json:"memory"`
+	HA     bool   `json:"ha"`
 }
 
 // VMStatus defines the observed state of VM
 type VMStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	// xiliangma test vm crd controller
+	UpdateLastTime metav1.Time `json:"update_last_time"`
+	Status         string      `json:"status"`
 }
 
+// +kubebuilder:subresource:status
 // +kubebuilder:object:root=true
 
 // VM is the Schema for the vms API

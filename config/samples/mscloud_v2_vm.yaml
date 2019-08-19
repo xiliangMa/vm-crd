@@ -1,0 +1,12 @@
+apiVersion: mscloud.xiliangam.com/v1
+kind: VM
+metadata:
+  name: vm-sample2
+spec:
+  # Add fields here
+  foo: bar
+  name: "vm1"
+  type: "Centos 7.2"
+  cpu: 1
+  memory: 1024
+  ha: true

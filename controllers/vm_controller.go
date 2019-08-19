@@ -17,8 +17,11 @@ package controllers
 
 import (
 	"context"
-
+	"fmt"
 	"github.com/go-logr/logr"
+	//"time"
+
+	//metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
@@ -35,10 +38,30 @@ type VMReconciler struct {
 // +kubebuilder:rbac:groups=mscloud.xiliangam.com,resources=vms/status,verbs=get;update;patch
 
 func (r *VMReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
-	_ = context.Background()
-	_ = r.Log.WithValues("vm", req.NamespacedName)
+	ctx := context.Background()
+	log := r.Log.WithValues("vm", req.NamespacedName)
 
-	// your logic here
+	// 1. xiliangma 获取vm 信息
+	var vm mscloudv1.VM
+	if err := r.Get(ctx, req.NamespacedName, &vm); err != nil {
+		log.Error(err, "unable to get vm")
+	} else {
+		fmt.Println("Get vm spec info success, ", vm.Spec.Name, vm.Spec.Type, vm.Spec.CPU, vm.Spec.Memory, vm.Spec.HA)
+
+	}
+
+	// 2. 更新虚拟机状态
+	//vm.Status.UpdateLastTime = metav1.Now()
+	//vm.Status.Status = "Running"
+	//if err := r.Status().Update(ctx, &vm); err != nil {
+	//	log.Error(err, "not update vm  status.")
+	//}
+
+	// 3. 删除虚拟机
+	//time.Sleep(time.Second * 5)
+	//if err := r.Delete(ctx, &vm); err != nil {
+	//	log.Error(err, "unable to delete vm ", "vm", vm)
+	//}
 
 	return ctrl.Result{}, nil
 }
